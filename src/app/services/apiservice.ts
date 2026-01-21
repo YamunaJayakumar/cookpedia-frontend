@@ -14,5 +14,9 @@ export class Apiservice {
   getAllRecipeAPI(){
     return this.http.get(`${this.server_url}/recipes`)
   }
+  //register api
+  registerAPI(user:any){
+    return this.http.post(`${this.server_url}/register`,user)
+  }
   
 }

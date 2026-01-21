@@ -1,25 +1,36 @@
 <div class="container  ">
       <div class="row p-5 align-items-center register-bg">
         <div class="col-md-5 text-center">
-            <div class="border rounded p-5 w-75">
+            <div class="border rounded bg-white p-5 w-75">
                 <h3 class="text-black text-center">Register</h3>
                 
-                <form>
+                <form [formGroup]="registerForms" (ngSubmit)="register()">
                     <div class="w-100">
                         <div class="mb-3">
                         
-                            <input placeholder="username" type="text" class="form-control w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input name="username" formControlName="username" placeholder="username" type="text" class="form-control w-100" id="username" aria-describedby="emailHelp">
                         </div>
+                        @if (registerForms.get("username")?.errors && registerForms.get("username")?.touched){
+                             <div class="mb-3 text-danger fw-bolder">*Invalid Username</div>
+                        }
+                       
+
                         <div class="mb-3">
                           
-                            <input   placeholder="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input name="email" formControlName="email"  placeholder="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
                         </div>
+                        @if (registerForms.get("email")?.errors && registerForms.get("email")?.touched){
+                             <div class="mb-3 text-danger fw-bolder">*Invalid email</div>
+                        }
                         <div class="mb-3">
                             
-                            <input  placeholder="password" type="text" class="form-control" id="exampleInputpassword1" aria-describedby="emailHelp">
+                            <input name="password" formControlName="password"  placeholder="password" type="text" class="form-control" id="password" aria-describedby="emailHelp">
                         </div>
+                        @if (registerForms.get("password")?.errors && registerForms.get("password")?.touched){
+                             <div class="mb-3 text-danger fw-bolder">*Invalid password</div>
+                        }
                         <div>
-                            <button class="btn btn-success w-100">Register</button>
+                            <button type="submit" class="btn btn-success w-100">Register</button>
                         </div>
                     </div>
                 </form>
