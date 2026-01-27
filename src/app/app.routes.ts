@@ -38,7 +38,7 @@ export const routes: Routes = [
         path:'user/profile',component:UserProfile,title:'Profile'
     },
     {
-        path:'recipes/:id/view',component:ViewRecipe,title:'Profile'
+        path:'recipes/:id/view',component:ViewRecipe,title:'view recipe'
     },
      {
         path:'recipes/:id/view',component:ViewRecipe,title:'Recipe'

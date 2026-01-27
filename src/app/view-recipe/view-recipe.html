@@ -1,1 +1,93 @@
-<p>view-recipe works!</p>
+<app-header></app-header>
+<div class="container my-5">
+    <div class="row  ">
+        <div class="col-lg-6">
+            <a routerLink="/recipes">Back to recipe List</a>
+            <br>
+            <img class="w-100" [src]="recipe().image" alt="">
+        
+            <div class=" d-flex justify-content-between align-items-center my-5">
+                <button (click)="pdfRecipe()" class="btn btn-success">Download Recipe</button>
+                <button  (click)="saveRecipe()"class="btn btn-primary">Save Recipe</button>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-5">
+            <h1>{{recipe().name}}</h1>
+            <div class="row mt-3">
+                <div class="col-lg-4">
+                    <h5>Cusine: <span class="text-danger">{{recipe().cuisine}}</span></h5>
+                </div>
+                <div class="col-lg-4">
+                    <h5>servings: <span class="text-success">{{recipe().servings}}</span></h5>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Mode of cooking: <span class="text-warning">{{recipe().difficulty}}</span></h5>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-4">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <div>
+                            <img width="100px" src="https://tse2.mm.bing.net/th?id=OIP.xy52jM0FuazKAQTfeyvo_gHaHa&pid=Api&P=0&h=180" alt="clock">
+                            <h6>preparation Time: <span class="text-success">{{recipe().prepTimeMinutes}}</span></h6>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <div>
+                            <img width="100px" src="https://png.pngtree.com/png-clipart/20230323/original/pngtree-cooking-logo-png-image_9001296.png" alt="clock">
+                            <h6>cooking Time: <span class="text-success">{{recipe().cookTimeMinutes}}</span></h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <div>
+                            <img width="100px" src="https://cdn1.iconfinder.com/data/icons/fitness-sport/512/calories-512.png" alt="clock">
+                            <h6>caloriex Per serving: <span class="text-success">{{recipe().caloriesPerServing}}</span>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+             <h2>Incgridents needed</h2>
+        <ol>
+            @for(item of recipe().ingredients;track $index){
+                <li>{{item}}</li>
+                
+            }
+        </ol>
+        <h2>Cooking instrcutions</h2>
+        <ol>
+            @for(item of recipe().instructions;track $index){
+                <li>{{item}}</li>
+                
+            }
+        </ol>
+        </div> 
+       
+    </div>
+    <!-- related recipes -->
+     <div class="mb-3">
+        <h1>Related Recipes</h1>
+        <div class="row my-3">
+             @for(recipe of relatedRecipe();track $index){
+        <div (click)="viewRelatedRecipeDetails(recipe._id)" class="col-lg-2">
+        <div  class="p-3">
+          <img class="card-img-top" [src]="recipe.image" alt="recipe">
+          <div class="card-body">
+            <p class="card-title">{{recipe.name}}</p>
+          </div>
+        </div>
+      </div>
+    }
+        </div>
+     </div>
+</div>
+<app-footer></app-footer>

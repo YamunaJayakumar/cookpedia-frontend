@@ -4,7 +4,7 @@
     <div class="col-lg-4">
       <h4>Filter</h4>
       <!-- all btn -->
-      <button (click)="getAllRecipes"
+      <button (click)="getAllRecipes()"
        class="btn">All</button>
       <!-- cuisine dropdown -->
       <div>
@@ -42,7 +42,7 @@
       <div class="row">
         <!-- duplicate according to recipe card -->
          @for(recipe of allrecipes() | search:searchKey | paginate: { itemsPerPage: 9, currentPage: p } ;track $index){
-          <div class="col-lg-4">
+          <div (click)="viewRecipe(recipe._id)" class="col-lg-4">
           <div class="p-3">
           <img class="card-img-top" [src]="recipe.image" alt="recipe">
           <div class="card-body">
