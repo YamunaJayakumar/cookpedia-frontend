@@ -1,55 +1,38 @@
-import { Component, inject, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { Router } from '@angular/router';
 import { Apiservice } from '../services/apiservice';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
-  imports: [Header,Footer,ReactiveFormsModule],
+  imports: [Header,Footer,FormsModule],
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })
 export class Contact {
-  testimonialForm:FormGroup;
-  fb=inject(FormBuilder)
-  router=inject(Router)
+  name:string=''
+  email:string=''
+  message:string=''
   api=inject(Apiservice)
-  constructor(){
-    this.testimonialForm= this.fb.group({
-      name:['',[Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-      email:['',[Validators.required,Validators.email]],
-      message:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
-
-    })
-    } 
-
-    testimony(){
-    if(this.testimonialForm.valid){
-      const name = this.testimonialForm.value.name
-      const email=this.testimonialForm.value.email
-      const message =this.testimonialForm.value.message
-      
-      this.api.addFeedBackAPI({name,email,message}).subscribe({
-        next:(res:any)=>{
-          alert("submitted successfully")
-          this.testimonialForm.reset()
-          this.router.navigateByUrl('/')
-
-        },
-        error:(reason:any)=>{
-          alert(reason.error)
-          this.testimonialForm.reset()
-         
-
-        }
+  addFeedback(){
+    if(this.name && this.email && this.message){
+      this.api.addFeedBackAPI({name:this.name ,email:this.email,message:this.message}).subscribe((res:any)=>{
+        this.name=""
+        this.email=""
+        this.message=""
+        alert("thankyou for your feedback")
       })
+      
     }
     else{
-      alert("invalid inputs")
+      alert("please fill the form completely")
     }
   }
+ 
+   
 
 
 

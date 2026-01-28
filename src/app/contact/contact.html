@@ -1,52 +1,78 @@
 <app-header></app-header>
 <div class="container">
-    <div class="row p-5 bg-success text-center">
-        <h1>Contact Us</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut corrupti voluptas nesciunt animi in! Distinctio quidem temporibus veritatis ea eaque saepe voluptas id! Minima iusto laudantium facilis illo ex adipisci.</p>
+    <div class="row p-5 bg-success text-center align-items-center " style="height: 300px;">
+        <div class="col-lg-2"></div>
+       <div class="col-lg-8">
+            <h1 class="text-light">Contact Us</h1>
+            <p class="text-light">We’d love to hear from you! 
+    Whether you have a question, feedback, or a recipe suggestion, the Cookpedia team is always happy to help.</p>
+       </div>
+       <div class="col-lg-2"></div>
     </div>
-    <div class="row py-4">
-        <div class="col-lg-6 text-left px-5">
+    <div class="row py-4 my-5">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4 text-left px-5">
             <h4>Get in touch</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, animi. Placeat molestias molestiae optio nemo temporibus! Et ab, a blanditiis quis quam deleniti distinctio, mollitia minima modi earum quos illum.</p>
             <div>
-                <div class="d-flex justify-content-center align-items-center">
-                    phone
+                <div class="d-flex justify-content-center align-items-center gap-3 ">
+                    <div class="bg-success d-flex justify-content-center align-items-center  p-2" style="border-radius: 50%;"><i class="fa-solid fa-location rounded"></i></div>
+                    <div class="d-flex flex-column justify-content-center">
+                        <h4>Address</h4>
+                        <p>cookepedia,kochi,kerala</p>
+                    </div>
 
                 </div>
-               <div class="d-flex justify-content-center align-items-center">
-                    phone
+               <div class="d-flex justify-content-center align-items-center gap-3 ">
+                    <div class="bg-success d-flex justify-content-center align-items-center  p-2" style="border-radius: 50%;"><i class="fa-solid fa-location rounded"></i></div>
+                    <div class="d-flex flex-column justify-content-center">
+                        <h4>Address</h4>
+                        <p>cookepedia,kochi,kerala</p>
+                    </div>
 
                 </div>
-                <div class="d-flex justify-content-center align-items-center">
-                    phone
+                <div class="d-flex justify-content-center align-items-center gap-3 ">
+                    <div class="bg-success d-flex justify-content-center align-items-center  p-2" style="border-radius: 50%;">
+                        <i class="fa-solid fa-location rounded"></i>
+                        
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                        <h4>Address</h4>
+                        <p>cookepedia,kochi,kerala</p>
+                    </div>
 
                 </div>
 
             </div>
         </div>
-        <div class="col-lg-6 p-5">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-4 ">
             <div class="border p-5 rounded ">
-                <h3 class="text-center my-4">Client Testimony</h3>
-                <form [formGroup]="testimonialForm" (ngSubmit)="testimony()" action="" >
+                <h3 class="text-center">Client Testimony</h3>
+                <form #feedbackform="ngForm"  (ngSubmit)="addFeedback()" action="" >
                     <div class="mb-3">
-                        <input name="name" formControlName="name" class="form-control" type="text"placeholder="name"/>
+                        <input #username="ngModel" name="name" [(ngModel)]="name" class="mt-5 form-control" type="text"placeholder="name" required pattern="[a-zA-Z ]*"/>
+                    </div>
+                    @if(username.invalid && username.touched){<div class="mb-3 text-danger fw-bolder">*Invalid username</div>}
+                    <div class="mb-3">
+                     <input #mail="ngModel" name="email" [(ngModel)]="email"  class="form-control" type="email"placeholder="email" email required/>
+                     @if(mail.invalid && mail.touched){<div class="mb-3 text-danger fw-bolder">*Invalid email</div>}
                     </div>
                     <div class="mb-3">
-                        <input name="email" formControlName="email" class="form-control" type="email"placeholder="email"/>
-                    </div>
-                    <div class="mb-3">
-                        <textarea name="message" formControlName="message" class="form-control" placeholder="message"></textarea>
+                        <textarea #umessage="ngModel" type="text"  name="message" [(ngModel)]="message" class="form-control" placeholder="message" required></textarea>
+                        @if(umessage.invalid && umessage.touched){<div class="mb-3 text-danger fw-bolder">*Invalid message</div>}
                     </div>
                     <div class="mb-3 text-end">
-                        <button class="btn btn-success ">Submit</button>
+                        <button [disabled]="feedbackform.invalid" type="submit" class="btn btn-success ">Submit</button>
                     </div>
 
                 </form>
             </div>
+            <div class="col-lg-1"></div>
         </div>
     </div>
-    <div class="row">
-      <!-- map -->
+    <div class="row ">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31431.872551099885!2d76.30455493927003!3d10.018172936904756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080ffce877d5ef%3A0x8bef6870ad11b98!2sLuminar%20Technolab%20-%20Python%2C%20Data%20Science%2C%20AI%2C%20ASP.NET%2C%20Flutter%2C%20Software%20Testing%20Training%20Institute%20in%20Kochi!5e0!3m2!1sen!2sin!4v1769581790483!5m2!1sen!2sin" width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </div>
 <app-footer></app-footer>

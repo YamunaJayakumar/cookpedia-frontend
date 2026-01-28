@@ -1,1 +1,45 @@
-<p>user-profile works!</p>
+<app-header></app-header>
+<div class="container">
+    <div class="row bg-success" style="height:200px"></div>
+    <div style="width: 220px ;height: 220px; border-radius: 50%;margin-top: -110px;"
+        class="d-flex justify-content-center align-items-center p-1 shadow ">
+        <label for="upload">
+            <img width="200px" height="200px" style='border-radius: 50%;' [src]="userImage" alt="user">
+
+        </label>
+        <input type="file" id="upload" hidden>
+    </div>
+    <label style="margin-top:-50px ; margin-left: 120px;" for='upload' class="btn btn-success"><i
+            class="fa-solid fa-pen text-light"></i></label>
+    <h1>{{username}} <i class="fa-solid fa-check text-primary"></i></h1>
+    <h4>Food lover | Recipe explorer</h4>
+    <h5>Discover • Cook • Share</h5>
+    <h6 class="text-align-justify">Hi! I’m a food lover who enjoys exploring new recipes and trying different cuisines.
+        Cooking is my way of expressing creativity and sharing happiness with others. Through Cookepedia, I love
+        discovering delicious dishes, saving my favorites, and learning new cooking ideas every day. Whether it’s a
+        quick meal or a special recipe, I believe good food always brings people together.</h6>
+    <div>
+        <h2>Download Recipe History</h2>
+        <div class="row">
+                    @for (recipe of downloadList(); track $index) {
+                        
+                          <div class="col-lg-2">
+                           <div class="p-3" routerLink='/recipes/{{recipe._id}}/view'>
+                                <img class="card-img-top" [src]="recipe.image" alt="recipe">
+                                <div class="card-body">
+                                    <p class="card-title">{{recipe.name}}</p>
+                                </div>
+                           </div>
+                            </div>
+                        
+                    }
+                   
+                
+        </div>
+
+    </div>
+
+
+</div>
+
+<app-footer></app-footer>
